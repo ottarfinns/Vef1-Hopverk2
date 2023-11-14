@@ -4,7 +4,7 @@
   "description": "",
   "main": ".eslintrc.js",
   "scripts": {
-    "dev": "browser-sync start --server --files ./src/ styles.css index.html",
+    "dev": "browser-sync start --server --files ./src/ styles.css index.html && tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
     "lint": "eslint ./**/*.js",
     "prettier": "prettier --write .",
     "copy:html": "cpy ./*.html ./build/",
