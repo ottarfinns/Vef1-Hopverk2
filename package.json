@@ -1,4 +1,20 @@
 {
+  "name": "hopverk2",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "dev": "browser-sync start --server --files ./src/ styles.css index.html",
+    "lint": "eslint ./**/*.js",
+    "prettier": "prettier --write .",
+    "copy:html": "cpy ./*.html ./build/",
+    "copy:js": "cpy ./src/*.js ./src/lib/*.js ./build/",
+    "copy:css": "cpy ./*.css ./build/",
+    "build": "concurrently npm:copy:*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.29.3",
     "concurrently": "^8.2.2",
