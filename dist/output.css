@@ -2327,8 +2327,9 @@ input.tab:checked + .tab-content,
   border-width: 1px;
 }
 
-.text-right {
-  text-align: right;
+.bg-red-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
 }
 
 .uppercase {
@@ -2341,6 +2342,11 @@ input.tab:checked + .tab-content,
 
 .italic {
   font-style: italic;
+}
+
+.text-sky-500 {
+  --tw-text-opacity: 1;
+  color: rgb(14 165 233 / var(--tw-text-opacity));
 }
 
 .underline {
