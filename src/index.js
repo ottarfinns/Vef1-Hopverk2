@@ -1,16 +1,21 @@
 import { el } from './lib/element.js';
-/* import { renderSixProd } from './lib/ui.js'; */
-import { renderSixProd } from './lib/ui.js';
+import { getSixProd } from './lib/api.js';
 
 const bodyEl = document.body;
-const mainEl = el('main', { class: 'main' });
-bodyEl.appendChild(mainEl);
+const wrapperEl = el('div', {
+  class: 'wrapper',
+});
+const mainEl = el('main', {
+  class: 'main',
+});
+wrapperEl.appendChild(mainEl);
+bodyEl.appendChild(wrapperEl);
 
-const navBar = () => {
+const navBar = async () => {
   const navEl = el(
     'nav',
     { class: 'nav flex justify-between' },
-    el('h1', { class: 'h1 self-center text-xl' }, 'Vefforritunarbúðin')
+    el('h1', { class: 'h1 self-center text-2xl' }, 'Vefforritunarbúðin')
   );
   const navDiv = el(
     'div',
@@ -29,12 +34,41 @@ const navBar = () => {
       el('a', { class: 'nav-link', href: '#' }, 'Flokkar')
     )
   );
-
   navEl.appendChild(navDiv);
   mainEl.appendChild(navEl);
-
-  const foo = renderSixProd();
-  console.log(foo);
 };
-
 navBar();
+
+async function nyjarVorur() {
+  const products = await getSixProd();
+
+  console.log(products);
+
+  const list = el('ul', { class: 'product-list flex' });
+
+  for (const prod of products) {
+    const productElement = el(
+      'li',
+      { class: 'prod-container' },
+      el(
+        'div',
+        { class: 'prod-card' },
+        el('img', { class: 'prod-img', src: `${prod.image}` }),
+        el(
+          'div',
+          { class: 'prod-info-container' },
+          el(
+            'span',
+            { class: 'prod-title' },
+            `${prod.title} ${prod.category_title}`
+          ),
+          el('span', { class: 'prod-price' }, `${prod.price} kr.-`)
+        )
+      )
+    );
+    list.appendChild(productElement);
+  }
+
+  mainEl.appendChild(list);
+}
+nyjarVorur();

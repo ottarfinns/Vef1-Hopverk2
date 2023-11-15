@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --offset: 20px;
+  --max-width: 1400px;
+  --width-offset: calc(100% - (2 * var(--offset)));
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto;
+  justify-items: center;
+  gap: 1rem;
+}
+
+/* grid gap-4 justify-items-center grid-template-column */
+
+.main {
+  max-width: var(--max-width);
+  width: var(--width-offset);
+}

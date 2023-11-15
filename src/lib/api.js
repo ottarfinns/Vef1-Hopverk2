@@ -1,6 +1,6 @@
 /* const API_URL = 'https://vef1-2023-h2-api-791d754dda5b.herokuapp.com/'; */
 
-/* export async function getSixProd() {
+export async function getSixProd() {
   const urlLim =
     'https://vef1-2023-h2-api-791d754dda5b.herokuapp.com/products?limit=6';
 
@@ -29,5 +29,5 @@
     return null;
   }
 
-  return sixProd.results;
-} */
+  return sixProd.items;
+}
