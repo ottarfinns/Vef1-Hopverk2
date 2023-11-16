@@ -1,5 +1,5 @@
 import { el } from './lib/element.js';
-import { getSixProd } from './lib/api.js';
+import { fetchFromLink } from './lib/api.js';
 
 const bodyEl = document.body;
 const wrapperEl = el('div', {
@@ -40,30 +40,30 @@ const navBar = async () => {
 navBar();
 
 async function nyjarVorur() {
-  const products = await getSixProd();
+  const res = await fetchFromLink('products?limit=6');
 
-  console.log(products);
+  const products = res.items;
 
-  const list = el('ul', { class: 'product-list flex' });
+  const list = el('ul', { class: 'product-list grid grid-cols-12 gap-4' });
 
   for (const prod of products) {
     const productElement = el(
-      'li',
-      { class: 'prod-container' },
+      'div',
+      { class: 'prod-card col-span-4' },
       el(
         'div',
-        { class: 'prod-card' },
-        el('img', { class: 'prod-img', src: `${prod.image}` }),
+        { class: 'prod-img-container' },
+        el('img', { class: 'prod-img object-cover', src: `${prod.image}` })
+      ),
+      el(
+        'div',
+        { class: 'prod-info-container' },
         el(
-          'div',
-          { class: 'prod-info-container' },
-          el(
-            'span',
-            { class: 'prod-title' },
-            `${prod.title} ${prod.category_title}`
-          ),
-          el('span', { class: 'prod-price' }, `${prod.price} kr.-`)
-        )
+          'span',
+          { class: 'prod-title' },
+          `${prod.title} ${prod.category_title}`
+        ),
+        el('span', { class: 'prod-price' }, `${prod.price} kr.-`)
       )
     );
     list.appendChild(productElement);
@@ -72,3 +72,25 @@ async function nyjarVorur() {
   mainEl.appendChild(list);
 }
 nyjarVorur();
+
+async function categoriesFront() {
+  const res = await fetchFromLink('/categories?limit=12');
+  const categories = res.items;
+
+  const list = el('ul', { class: 'category-list grid gap-4 grid-cols-12' });
+
+  for (const cat of categories) {
+    const catElement = el(
+      'div',
+      {
+        class: 'category border-solid border-black border-2 col-span-4',
+      },
+      `${cat.title}`
+    );
+    list.appendChild(catElement);
+  }
+  console.log(res);
+  mainEl.appendChild(list);
+}
+
+categoriesFront();
