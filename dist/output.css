@@ -2349,6 +2349,10 @@ input.tab:checked + .tab-content,
   align-self: center;
 }
 
+.justify-self-center {
+  justify-self: center;
+}
+
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2377,9 +2381,36 @@ input.tab:checked + .tab-content,
      object-fit: cover;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-medium {
+  font-weight: 500;
 }
 
 .uppercase {
@@ -2417,6 +2448,8 @@ input.tab:checked + .tab-content,
   grid-template-columns: 100%;
   grid-template-rows: auto;
   justify-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 /* grid gap-4 justify-items-center grid-template-column */

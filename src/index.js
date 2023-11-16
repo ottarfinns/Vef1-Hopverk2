@@ -77,20 +77,32 @@ async function categoriesFront() {
   const res = await fetchFromLink('/categories?limit=12');
   const categories = res.items;
 
+  const categoryContainer = el(
+    'div',
+    { class: 'cat-container' },
+    el(
+      'h2',
+      { class: 'cat-cont-header text-xl font-bold' },
+      'Skoðaðu vöruflokkana okkar'
+    )
+  );
+
   const list = el('ul', { class: 'category-list grid gap-4 grid-cols-12' });
 
   for (const cat of categories) {
     const catElement = el(
       'div',
       {
-        class: 'category border-solid border-black border-2 col-span-4',
+        class:
+          'category border-solid border-black border-2 col-span-4 text-center text-5xl',
       },
       `${cat.title}`
     );
     list.appendChild(catElement);
   }
   console.log(res);
-  mainEl.appendChild(list);
+  categoryContainer.appendChild(list);
+  mainEl.appendChild(categoryContainer);
 }
 
 categoriesFront();
