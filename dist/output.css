@@ -2349,10 +2349,6 @@ input.tab:checked + .tab-content,
   align-self: center;
 }
 
-.justify-self-center {
-  justify-self: center;
-}
-
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2390,27 +2386,18 @@ input.tab:checked + .tab-content,
   line-height: 2rem;
 }
 
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
 }
 
-.font-bold {
-  font-weight: 700;
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
-.font-medium {
-  font-weight: 500;
+.font-bold {
+  font-weight: 700;
 }
 
 .uppercase {

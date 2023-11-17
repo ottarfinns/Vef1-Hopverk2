@@ -44,6 +44,8 @@ async function nyjarVorur() {
 
   const products = res.items;
 
+  console.log(products);
+
   const list = el('ul', { class: 'product-list grid grid-cols-12 gap-4' });
 
   for (const prod of products) {
@@ -51,8 +53,8 @@ async function nyjarVorur() {
       'div',
       { class: 'prod-card col-span-4' },
       el(
-        'div',
-        { class: 'prod-img-container' },
+        'a',
+        { href: `/products/{${prod.id}}` },
         el('img', { class: 'prod-img object-cover', src: `${prod.image}` })
       ),
       el(
@@ -106,3 +108,12 @@ async function categoriesFront() {
 }
 
 categoriesFront();
+
+function route() {
+  const { search } = window.location;
+
+  const sParam = new URLSearchParams(search);
+
+  console.log(sParam);
+}
+route();
