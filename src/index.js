@@ -1,5 +1,5 @@
 import { el } from './lib/element.js';
-import { renderProduct, renderFrontPage, navBar } from './lib/ui.js';
+import { renderProductPage, renderFrontPage, navBar } from './lib/ui.js';
 
 const bodyEl = document.body;
 const wrapperEl = el('div', {
@@ -9,14 +9,14 @@ bodyEl.appendChild(wrapperEl);
 navBar(wrapperEl);
 
 function route() {
-  const { pathname } = window.location;
+  const { search } = window.location;
 
-  const sParams = new URLSearchParams(pathname);
+  const sParams = new URLSearchParams(search);
 
   const id = sParams.get('id');
 
   if (id) {
-    renderProduct();
+    renderProductPage(wrapperEl, id);
   } else {
     renderFrontPage(wrapperEl);
   }
