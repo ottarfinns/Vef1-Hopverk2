@@ -13,7 +13,7 @@ async function nyjarVorur(link) {
       { class: 'prod-card col-span-4' },
       el(
         'a',
-        { href: `/products/?id=${prod.id}` },
+        { href: `/?id=${prod.id}` },
         el('img', { class: 'prod-img object-cover', src: `${prod.image}` })
       ),
       el(
