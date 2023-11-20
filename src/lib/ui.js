@@ -104,7 +104,8 @@ export async function renderProductPage(parentElement, id) {
   parentElement.appendChild(main);
 }
 
-async function searchAndRender(searchForm, query) {
+async function searchAndRender(parentElement, searchForm, query) {
+  console.log(parentElement);
   console.log(searchForm);
   const main = document.querySelector('main');
   /* const prodListElement = document.querySelector('.product-list');
@@ -142,7 +143,9 @@ async function onSearch(e) {
     return;
   }
 
-  await searchAndRender(e.target, value);
+  const mainEl = document.querySelector('main');
+
+  await searchAndRender(mainEl, e.target, value);
 
   window.history.pushState({}, '', `?query=${value}`);
 }
@@ -154,11 +157,17 @@ export async function renderProductsList(parentElement, limit, query) {
   const button = await pageButton('Forsíða', '/');
 
   const form = renderSearchForm(onSearch, query);
+  const formContainer = el('div', { class: 'form-container' });
+  formContainer.appendChild(form);
+  parentElement.appendChild(formContainer);
 
-  main.appendChild(form);
   main.appendChild(productList);
   main.appendChild(button);
   parentElement.appendChild(main);
+
+  if (query) {
+    searchAndRender(main, form, query);
+  }
 }
 
 export function navBar(parentElement) {
@@ -235,4 +244,8 @@ export async function renderFrontPage(parentElement, query) {
   mainEl.appendChild(productsListButton);
   /* mainEl.appendChild(categoryContainer); */
   parentElement.appendChild(mainEl);
+
+  if (query) {
+    searchAndRender(mainEl, form, query);
+  }
 }
