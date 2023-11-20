@@ -21,3 +21,13 @@ export function el(name, attributes = {}, ...children) {
 
   return e;
 }
+
+export function empty(element) {
+  if (!element || !element.firstChild) {
+    return;
+  }
+
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+}
