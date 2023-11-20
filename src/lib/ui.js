@@ -13,7 +13,7 @@ async function nyjarVorur(link) {
       { class: 'prod-card col-span-4' },
       el(
         'a',
-        { href: `/products/?id=${prod.id}` },
+        { href: `/?id=${prod.id}` },
         el('img', { class: 'prod-img object-cover', src: `${prod.image}` })
       ),
       el(
@@ -31,6 +31,17 @@ async function nyjarVorur(link) {
   }
 
   return list;
+}
+async function pageButton(page, query) {
+  const button = el(
+    'button',
+    { class: 'bg-black text-white w-64 h-12' },
+    `${page}`
+  );
+  button.addEventListener('click', () => {
+    window.location.href = `${query}`;
+  });
+  return button;
 }
 
 export async function renderProductPage(parentElement, id) {
@@ -62,6 +73,15 @@ export async function renderProductPage(parentElement, id) {
   const catContainer = await nyjarVorur(catLink);
 
   main.appendChild(catContainer);
+  parentElement.appendChild(main);
+}
+
+export async function renderProductsList(parentElement, limit) {
+  const main = el('main', { class: 'main' });
+  const productList = await nyjarVorur(`products?limit=${limit}`);
+  const button = await pageButton('Forsíða', '/');
+  main.appendChild(productList);
+  main.appendChild(button);
   parentElement.appendChild(main);
 }
 
@@ -126,9 +146,11 @@ async function categoriesFront() {
 
 export async function renderFrontPage(parentElement) {
   const mainEl = el('main', { class: 'main' });
-  const productList = await nyjarVorur('products?limit=6');
+  const homePageProducts = await nyjarVorur('products?limit=6');
+  const productsListButton = await pageButton('Vörulisti', '?limit=100');
   const categoryContainer = await categoriesFront();
-  mainEl.appendChild(productList);
+  mainEl.appendChild(homePageProducts);
+  mainEl.appendChild(productsListButton);
   mainEl.appendChild(categoryContainer);
   parentElement.appendChild(mainEl);
 }
