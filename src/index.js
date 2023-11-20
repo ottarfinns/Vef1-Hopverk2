@@ -1,4 +1,4 @@
-import { el } from './lib/element.js';
+import { el, empty } from './lib/element.js';
 import {
   renderProductPage,
   renderFrontPage,
@@ -32,4 +32,22 @@ function route() {
     renderFrontPage(wrapperEl, query);
   }
 }
+
+window.onpopstate = () => {
+  const mainEl = document.querySelector('main');
+  const form = document.querySelector('.form-container');
+  /* const sParams = new URLSearchParams(window.location.search);
+  const query = sParams.get('query'); */
+
+  if (form) {
+    form.remove();
+  }
+
+  if (mainEl) {
+    mainEl.remove();
+  }
+
+  route();
+};
+
 route();

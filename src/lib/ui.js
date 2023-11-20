@@ -42,7 +42,7 @@ async function nyjarVorur(link) {
   return list;
 }
 
-async function pageButton(page, query) {
+function pageButton(page, query) {
   const button = el(
     'button',
     { class: 'bg-black text-white w-64 h-12' },
@@ -125,9 +125,12 @@ async function searchAndRender(parentElement, searchForm, query) {
     resultsElement.remove();
   }
 
+  const button = pageButton('Forsíða', '/');
+
   const searchResultsEl = await nyjarVorur(`/products?search=${query}`);
 
   main.appendChild(searchResultsEl);
+  main.appendChild(button);
 }
 
 async function onSearch(e) {
@@ -154,7 +157,7 @@ export async function renderProductsList(parentElement, limit, query) {
   const main = el('main', { class: 'main' });
 
   const productList = await nyjarVorur(`products?limit=${limit}`);
-  const button = await pageButton('Forsíða', '/');
+  const button = pageButton('Forsíða', '/');
 
   const form = renderSearchForm(onSearch, query);
   const formContainer = el('div', { class: 'form-container' });
@@ -174,7 +177,11 @@ export function navBar(parentElement) {
   const navEl = el(
     'nav',
     { class: 'nav flex justify-between w-full' },
-    el('h1', { class: 'h1 self-center text-2xl' }, 'Vefforritunarbúðin')
+    el(
+      'a',
+      { class: 'h1 self-center text-2xl', href: '/' },
+      'Vefforritunarbúðin'
+    )
   );
   const navDiv = el(
     'div',
@@ -232,7 +239,7 @@ export function navBar(parentElement) {
 export async function renderFrontPage(parentElement, query) {
   const mainEl = el('main', { class: 'main' });
   const homePageProducts = await nyjarVorur('products?limit=6');
-  const productsListButton = await pageButton('Vörulisti', '?limit=100');
+  const productsListButton = pageButton('Vörulisti', '?limit=100');
   /* const categoryContainer = await categoriesFront(); */
 
   const form = renderSearchForm(onSearch, query);
