@@ -3,7 +3,6 @@ import { fetchFromLink } from './api.js';
 
 async function nyjarVorur(link) {
   const res = await fetchFromLink(link);
-  console.log(res);
   const products = res.items;
 
   const list = el('ul', { class: 'product-list grid grid-cols-12 gap-4' });
@@ -79,10 +78,6 @@ export async function renderProductPage(parentElement, id) {
 
 export async function renderProductsList(parentElement, limit) {
   const main = el('main', { class: 'main' });
-  // const fetchLink = `https://vef1-2023-h2-api-791d754dda5b.herokuapp.com/products/${limit}`;
-  // const product = await fetchFromLink(fetchLink);
-  // const mainEl = el('main', { class: 'main' });
-  // const productList = await fetchFromLink('products?');
   const productList = await nyjarVorur(`products?limit=${limit}`);
   const button = await pageButton('Forsíða', '/');
   main.appendChild(productList);
@@ -153,11 +148,9 @@ export async function renderFrontPage(parentElement) {
   const mainEl = el('main', { class: 'main' });
   const homePageProducts = await nyjarVorur('products?limit=6');
   const productsListButton = await pageButton('Vörulisti', '?limit=100');
-  // const productsList = await nyjarVorur('products?limit=100');
   const categoryContainer = await categoriesFront();
   mainEl.appendChild(homePageProducts);
   mainEl.appendChild(productsListButton);
-  // mainEl.appendChild(productsList);
   mainEl.appendChild(categoryContainer);
   parentElement.appendChild(mainEl);
 }
