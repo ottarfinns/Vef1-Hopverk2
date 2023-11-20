@@ -19,21 +19,29 @@ async function nyjarVorur(link) {
   for (const prod of products) {
     const productElement = el(
       'div',
-      { class: 'prod-card col-span-4' },
+      { class: 'prod-card col-span-4 card bg-base-100 shadow-xl' },
       el(
-        'a',
-        { href: `/?id=${prod.id}` },
-        el('img', { class: 'prod-img object-cover', src: `${prod.image}` })
+        'figure',
+        {},
+        el(
+          'a',
+          { href: `/?id=${prod.id}` },
+          el('img', {
+            class: 'prod-img',
+            src: `${prod.image}`,
+          })
+        )
       ),
       el(
         'div',
-        { class: 'prod-info-container' },
+        { class: 'prod-info-container card-body' },
+        el('span', { class: 'prod-title card-title' }, `${prod.title} `),
         el(
-          'span',
-          { class: 'prod-title' },
-          `${prod.title} ${prod.category_title}`
-        ),
-        el('span', { class: 'prod-price' }, `${prod.price} kr.-`)
+          'div',
+          { class: '' },
+          el('p', {}, `${prod.category_title}`),
+          el('p', {}, `${prod.price} kr.-`)
+        )
       )
     );
     list.appendChild(productElement);
@@ -42,12 +50,10 @@ async function nyjarVorur(link) {
   return list;
 }
 
+/*  bg-black text-white w-64 h-12 */
+
 function pageButton(page, query) {
-  const button = el(
-    'button',
-    { class: 'bg-black text-white w-64 h-12' },
-    `${page}`
-  );
+  const button = el('button', { class: 'btn btn-neutral max-w-xs' }, `${page}`);
   button.addEventListener('click', () => {
     window.location.href = `${query}`;
   });
@@ -61,10 +67,10 @@ function renderSearchForm(searchHandler, query = undefined) {
     el('input', {
       value: query ?? '',
       name: 'query',
-      class: 'input input-bordered w-full max-w-xs',
+      class: 'input input-bordered w-full max-w-xs h-8',
       placeholder: 'Leita að vörum',
     }),
-    el('button', { class: 'btn btn-neutral' }, 'Leita')
+    el('button', { class: 'btn btn-neutral btn-sm' }, 'Leita')
   );
 
   form.addEventListener('submit', searchHandler);
@@ -105,13 +111,13 @@ export async function renderProductPage(parentElement, id) {
 }
 
 async function searchAndRender(parentElement, searchForm, query) {
-  const main = document.querySelector('main');
+  /* const main = document.querySelector('main'); */
 
-  if (!main) {
-    console.warn('fann ekki <main> element');
+  if (!parentElement) {
+    console.warn('fann ekki <parentElement>');
     return;
   }
-  empty(main);
+  empty(parentElement);
 
   const resultsElement = document.querySelector('.results');
   if (resultsElement) {
@@ -122,8 +128,8 @@ async function searchAndRender(parentElement, searchForm, query) {
 
   const searchResultsEl = await nyjarVorur(`/products?search=${query}`);
 
-  main.appendChild(searchResultsEl);
-  main.appendChild(button);
+  parentElement.appendChild(searchResultsEl);
+  parentElement.appendChild(button);
 }
 
 async function onSearch(e) {
@@ -152,6 +158,11 @@ export async function renderProductsList(parentElement, limit, query) {
   const productList = await nyjarVorur(`products?limit=${limit}`);
   const button = pageButton('Forsíða', '/');
 
+  const selectedLink = document.querySelector('.allar-link');
+  if (selectedLink) {
+    selectedLink.classList.add('font-bold');
+  }
+
   const form = renderSearchForm(onSearch, query);
   const formContainer = el('div', { class: 'form-container' });
   formContainer.appendChild(form);
@@ -169,10 +180,10 @@ export async function renderProductsList(parentElement, limit, query) {
 export function navBar(parentElement) {
   const navEl = el(
     'nav',
-    { class: 'nav flex justify-between w-full' },
+    { class: 'nav flex justify-between items-center w-full' },
     el(
       'a',
-      { class: 'h1 self-center text-2xl', href: '/' },
+      { class: 'h1 self-center text-3xl', href: '/' },
       'Vefforritunarbúðin'
     )
   );
@@ -189,8 +200,12 @@ export function navBar(parentElement) {
     el(
       'div',
       { class: 'flex gap-4' },
-      el('a', { class: 'nav-link', href: '#' }, 'Nýjar Vörur'),
-      el('a', { class: 'nav-link', href: '#' }, 'Flokkar')
+      el('a', { class: 'nav-link nyjar-link', href: '/' }, 'Nýjar Vörur'),
+      el(
+        'a',
+        { class: 'nav-link allar-link', href: '/?limit=100' },
+        'Allar Vörur'
+      )
     )
   );
   navEl.appendChild(navDiv);
@@ -206,6 +221,11 @@ export async function renderFrontPage(parentElement, query) {
   const formContainer = el('div', { class: 'form-container' });
   formContainer.appendChild(form);
   parentElement.appendChild(formContainer);
+
+  const selectedLink = document.querySelector('.nyjar-link');
+  if (selectedLink) {
+    selectedLink.classList.add('font-bold');
+  }
 
   mainEl.appendChild(homePageProducts);
   mainEl.appendChild(productsListButton);
