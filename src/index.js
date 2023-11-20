@@ -29,7 +29,7 @@ function route() {
   } else if (limit) {
     renderProductsList(wrapperEl, limit, query);
   } else {
-    renderFrontPage(wrapperEl);
+    renderFrontPage(wrapperEl, query);
   }
 }
 route();

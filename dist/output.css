@@ -2653,7 +2653,8 @@ input.tab:checked + .tab-content,
   gap: 1rem;
 }
 
-.nav {
+.nav,
+.form-container {
   max-width: var(--max-width);
   width: var(--width-offset);
 }

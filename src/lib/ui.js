@@ -1,11 +1,9 @@
-import { el } from './element.js';
+import { el, empty } from './element.js';
 import { fetchFromLink } from './api.js';
 
 async function nyjarVorur(link) {
   const res = await fetchFromLink(link);
   const products = res.items;
-
-  console.log(products);
 
   if (products.length === 0) {
     const noResultsEl = el(
@@ -107,17 +105,19 @@ export async function renderProductPage(parentElement, id) {
 }
 
 async function searchAndRender(searchForm, query) {
+  console.log(searchForm);
   const main = document.querySelector('main');
-  const prodListElement = document.querySelector('.product-list');
+  /* const prodListElement = document.querySelector('.product-list');
 
   if (prodListElement) {
     prodListElement.remove();
-  }
+  } */
 
   if (!main) {
     console.warn('fann ekki <main> element');
     return;
   }
+  empty(main);
 
   const resultsElement = document.querySelector('.results');
   if (resultsElement) {
@@ -144,7 +144,7 @@ async function onSearch(e) {
 
   await searchAndRender(e.target, value);
 
-  window.history.pushState({}, '', `?limit=100&query=${value}`);
+  window.history.pushState({}, '', `?query=${value}`);
 }
 
 export async function renderProductsList(parentElement, limit, query) {
@@ -188,7 +188,7 @@ export function navBar(parentElement) {
   parentElement.appendChild(navEl);
 }
 
-async function categoriesFront() {
+/* async function categoriesFront() {
   const res = await fetchFromLink('/categories?limit=12');
   const categories = res.items;
 
@@ -218,15 +218,21 @@ async function categoriesFront() {
 
   categoryContainer.appendChild(list);
   return categoryContainer;
-}
+} */
 
-export async function renderFrontPage(parentElement) {
+export async function renderFrontPage(parentElement, query) {
   const mainEl = el('main', { class: 'main' });
   const homePageProducts = await nyjarVorur('products?limit=6');
   const productsListButton = await pageButton('Vörulisti', '?limit=100');
-  const categoryContainer = await categoriesFront();
+  /* const categoryContainer = await categoriesFront(); */
+
+  const form = renderSearchForm(onSearch, query);
+  const formContainer = el('div', { class: 'form-container' });
+  formContainer.appendChild(form);
+  parentElement.appendChild(formContainer);
+
   mainEl.appendChild(homePageProducts);
   mainEl.appendChild(productsListButton);
-  mainEl.appendChild(categoryContainer);
+  /* mainEl.appendChild(categoryContainer); */
   parentElement.appendChild(mainEl);
 }
