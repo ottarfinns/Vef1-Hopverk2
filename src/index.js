@@ -1,5 +1,10 @@
 import { el } from './lib/element.js';
-import { renderProductPage, renderFrontPage, navBar } from './lib/ui.js';
+import {
+  renderProductPage,
+  renderFrontPage,
+  navBar,
+  renderProductsList,
+} from './lib/ui.js';
 
 const bodyEl = document.body;
 const wrapperEl = el('div', {
@@ -15,8 +20,12 @@ function route() {
 
   const id = sParams.get('id');
 
+  const limit = sParams.get('limit');
+
   if (id) {
     renderProductPage(wrapperEl, id);
+  } else if (limit) {
+    renderProductsList(wrapperEl, limit);
   } else {
     renderFrontPage(wrapperEl);
   }
