@@ -5,8 +5,6 @@ async function nyjarVorur(link) {
   const res = await fetchFromLink(link);
   const products = res.items;
 
-  console.log(products);
-
   if (products.length === 0) {
     const noResultsEl = el(
       'span',
@@ -106,16 +104,19 @@ export async function renderProductPage(parentElement, id) {
   parentElement.appendChild(main);
 }
 
-async function searchAndRender(searchForm, query) {
-  const main = document.querySelector('main');
-  const prodListElement = document.querySelector('.product-list');
+async function searchAndRender(parentElement, searchForm, query) {
+  /* const main = document.querySelector('main'); */
+  /* const prodListElement = document.querySelector('.product-list');
 
   if (prodListElement) {
     prodListElement.remove();
-  }
+  } */
+  console.log('SAR');
+  console.log(searchForm);
+  console.log(query);
 
-  if (!main) {
-    console.warn('fann ekki <main> element');
+  if (!parentElement) {
+    console.warn('fann ekki <parentElement>');
     return;
   }
 
@@ -126,11 +127,13 @@ async function searchAndRender(searchForm, query) {
 
   const searchResultsEl = await nyjarVorur(`/products?search=${query}`);
 
-  main.appendChild(searchResultsEl);
+  parentElement.appendChild(searchResultsEl);
 }
 
 async function onSearch(e) {
   e.preventDefault();
+
+  const mainEl = document.querySelector('main');
 
   if (!e.target || !(e.target instanceof Element)) {
     return;
@@ -142,9 +145,9 @@ async function onSearch(e) {
     return;
   }
 
-  await searchAndRender(e.target, value);
+  await searchAndRender(mainEl, e.target, value);
 
-  window.history.pushState({}, '', `?limit=100&query=${value}`);
+  window.history.pushState({}, '', `?query=${value}`);
 }
 
 export async function renderProductsList(parentElement, limit, query) {
@@ -188,7 +191,7 @@ export function navBar(parentElement) {
   parentElement.appendChild(navEl);
 }
 
-async function categoriesFront() {
+/* async function categoriesFront() {
   const res = await fetchFromLink('/categories?limit=12');
   const categories = res.items;
 
@@ -218,15 +221,27 @@ async function categoriesFront() {
 
   categoryContainer.appendChild(list);
   return categoryContainer;
-}
+} */
 
-export async function renderFrontPage(parentElement) {
+export async function renderFrontPage(parentElement, query) {
   const mainEl = el('main', { class: 'main' });
   const homePageProducts = await nyjarVorur('products?limit=6');
   const productsListButton = await pageButton('Vörulisti', '?limit=100');
-  const categoryContainer = await categoriesFront();
+  /* const categoryContainer = await categoriesFront(); */
+  const form = renderSearchForm(onSearch, query);
+  const formContainer = el('div', { class: 'form-container' });
+  formContainer.appendChild(form);
+
+  parentElement.appendChild(formContainer);
   mainEl.appendChild(homePageProducts);
   mainEl.appendChild(productsListButton);
-  mainEl.appendChild(categoryContainer);
+  /* mainEl.appendChild(categoryContainer); */
+
+  console.log(mainEl);
+  console.log(form);
+  console.log(query);
+  if (query) {
+    searchAndRender(mainEl, form, query);
+  }
   parentElement.appendChild(mainEl);
 }
