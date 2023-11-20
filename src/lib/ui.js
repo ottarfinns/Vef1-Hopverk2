@@ -105,14 +105,7 @@ export async function renderProductPage(parentElement, id) {
 }
 
 async function searchAndRender(parentElement, searchForm, query) {
-  console.log(parentElement);
-  console.log(searchForm);
   const main = document.querySelector('main');
-  /* const prodListElement = document.querySelector('.product-list');
-
-  if (prodListElement) {
-    prodListElement.remove();
-  } */
 
   if (!main) {
     console.warn('fann ekki <main> element');
@@ -204,43 +197,10 @@ export function navBar(parentElement) {
   parentElement.appendChild(navEl);
 }
 
-/* async function categoriesFront() {
-  const res = await fetchFromLink('/categories?limit=12');
-  const categories = res.items;
-
-  const categoryContainer = el(
-    'div',
-    { class: 'cat-container' },
-    el(
-      'h2',
-      { class: 'cat-cont-header text-xl font-bold' },
-      'Skoðaðu vöruflokkana okkar'
-    )
-  );
-
-  const list = el('ul', { class: 'category-list grid gap-4 grid-cols-12' });
-
-  for (const cat of categories) {
-    const catElement = el(
-      'div',
-      {
-        class:
-          'category border-solid border-black border-2 col-span-4 text-center text-5xl',
-      },
-      `${cat.title}`
-    );
-    list.appendChild(catElement);
-  }
-
-  categoryContainer.appendChild(list);
-  return categoryContainer;
-} */
-
 export async function renderFrontPage(parentElement, query) {
   const mainEl = el('main', { class: 'main' });
   const homePageProducts = await nyjarVorur('products?limit=6');
   const productsListButton = pageButton('Vörulisti', '?limit=100');
-  /* const categoryContainer = await categoriesFront(); */
 
   const form = renderSearchForm(onSearch, query);
   const formContainer = el('div', { class: 'form-container' });
@@ -249,7 +209,6 @@ export async function renderFrontPage(parentElement, query) {
 
   mainEl.appendChild(homePageProducts);
   mainEl.appendChild(productsListButton);
-  /* mainEl.appendChild(categoryContainer); */
   parentElement.appendChild(mainEl);
 
   if (query) {
