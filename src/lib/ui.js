@@ -5,6 +5,17 @@ async function nyjarVorur(link) {
   const res = await fetchFromLink(link);
   const products = res.items;
 
+  console.log(products);
+
+  if (products.length === 0) {
+    const noResultsEl = el(
+      'span',
+      { class: 'noresults font-bold' },
+      'Vara fannst ekki'
+    );
+    return noResultsEl;
+  }
+
   const list = el('ul', { class: 'product-list grid grid-cols-12 gap-4' });
 
   for (const prod of products) {
@@ -32,6 +43,7 @@ async function nyjarVorur(link) {
 
   return list;
 }
+
 async function pageButton(page, query) {
   const button = el(
     'button',
@@ -42,6 +54,24 @@ async function pageButton(page, query) {
     window.location.href = `${query}`;
   });
   return button;
+}
+
+function renderSearchForm(searchHandler, query = undefined) {
+  const form = el(
+    'form',
+    {},
+    el('input', {
+      value: query ?? '',
+      name: 'query',
+      class: 'input input-bordered w-full max-w-xs',
+      placeholder: 'Leita að vörum',
+    }),
+    el('button', { class: 'btn btn-neutral' }, 'Leita')
+  );
+
+  form.addEventListener('submit', searchHandler);
+
+  return form;
 }
 
 export async function renderProductPage(parentElement, id) {
@@ -76,10 +106,56 @@ export async function renderProductPage(parentElement, id) {
   parentElement.appendChild(main);
 }
 
-export async function renderProductsList(parentElement, limit) {
+async function searchAndRender(searchForm, query) {
+  const main = document.querySelector('main');
+  const prodListElement = document.querySelector('.product-list');
+
+  if (prodListElement) {
+    prodListElement.remove();
+  }
+
+  if (!main) {
+    console.warn('fann ekki <main> element');
+    return;
+  }
+
+  const resultsElement = document.querySelector('.results');
+  if (resultsElement) {
+    resultsElement.remove();
+  }
+
+  const searchResultsEl = await nyjarVorur(`/products?search=${query}`);
+
+  main.appendChild(searchResultsEl);
+}
+
+async function onSearch(e) {
+  e.preventDefault();
+
+  if (!e.target || !(e.target instanceof Element)) {
+    return;
+  }
+
+  const { value } = e.target.querySelector('input') ?? {};
+
+  if (!value) {
+    return;
+  }
+
+  await searchAndRender(e.target, value);
+
+  window.history.pushState({}, '', `?limit=100&query=${value}`);
+}
+
+export async function renderProductsList(parentElement, limit, query) {
   const main = el('main', { class: 'main' });
+
   const productList = await nyjarVorur(`products?limit=${limit}`);
   const button = await pageButton('Forsíða', '/');
+
+  const form = renderSearchForm(onSearch, query);
+
+  main.appendChild(form);
   main.appendChild(productList);
   main.appendChild(button);
   parentElement.appendChild(main);

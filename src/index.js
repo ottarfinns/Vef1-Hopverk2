@@ -22,10 +22,12 @@ function route() {
 
   const limit = sParams.get('limit');
 
+  const query = sParams.get('query');
+
   if (id) {
     renderProductPage(wrapperEl, id);
   } else if (limit) {
-    renderProductsList(wrapperEl, limit);
+    renderProductsList(wrapperEl, limit, query);
   } else {
     renderFrontPage(wrapperEl);
   }
