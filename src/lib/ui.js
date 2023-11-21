@@ -70,7 +70,7 @@ function renderSearchForm(searchHandler, query = undefined) {
       class: 'input input-bordered w-full max-w-xs h-8',
       placeholder: 'Leita að vörum',
     }),
-    el('button', { class: 'btn btn-neutral btn-sm' }, 'Leita')
+    el('button', { class: 'search-button btn btn-neutral btn-sm' }, 'Leita')
   );
 
   form.addEventListener('submit', searchHandler);
@@ -111,8 +111,6 @@ export async function renderProductPage(parentElement, id) {
 }
 
 async function searchAndRender(parentElement, searchForm, query) {
-  /* const main = document.querySelector('main'); */
-
   if (!parentElement) {
     console.warn('fann ekki <parentElement>');
     return;
@@ -126,7 +124,20 @@ async function searchAndRender(parentElement, searchForm, query) {
 
   const button = pageButton('Forsíða', '/');
 
+  const searchButton = searchForm.querySelector('.search-button');
+
+  if (searchButton) {
+    searchButton.setAttribute('disabled', 'disabled');
+  }
+
+  const loadingEl = el('p', { class: 'text-3xl' }, 'Leita að vörum...');
+  parentElement.appendChild(loadingEl);
+
   const searchResultsEl = await nyjarVorur(`/products?search=${query}`);
+
+  loadingEl.remove();
+
+  searchButton.removeAttribute('disabled');
 
   parentElement.appendChild(searchResultsEl);
   parentElement.appendChild(button);
