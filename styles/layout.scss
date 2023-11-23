@@ -1,0 +1,9 @@
+.wrapper {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 100%;
+
+  justify-items: center;
+
+  gap: var(--vertical-space);
+}

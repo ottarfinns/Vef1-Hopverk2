@@ -43,11 +43,7 @@ async function nyjarVorur(link) {
 }
 
 function pageButton(page, query) {
-  const button = el(
-    'button',
-    { class: 'bg-black text-white w-64 h-12' },
-    `${page}`
-  );
+  const button = el('button', { class: 'button' }, `${page}`);
   button.addEventListener('click', () => {
     window.location.href = `${query}`;
   });
@@ -61,10 +57,10 @@ function renderSearchForm(searchHandler, query = undefined) {
     el('input', {
       value: query ?? '',
       name: 'query',
-      class: 'input input-bordered w-full max-w-xs',
+      class: 'input',
       placeholder: 'Leita að vörum',
     }),
-    el('button', { class: 'btn btn-neutral' }, 'Leita')
+    el('button', { class: 'button' /* 'btn btn-neutral' */ }, 'Leita')
   );
 
   form.addEventListener('submit', searchHandler);
@@ -175,32 +171,39 @@ export async function renderProductsList(parentElement, limit, query) {
 
 export function navBar(parentElement) {
   const navEl = el(
-    'nav',
-    { class: 'nav flex justify-between w-full' },
-    el(
-      'a',
-      { class: 'h1 self-center text-2xl', href: '/' },
-      'Vefforritunarbúðin'
-    )
-  );
-  const navDiv = el(
     'div',
-    { class: 'nav-div flex gap-4 flex-wrap' },
+    { class: 'top' /* flex justify-between w-full' */ },
     el(
-      'div',
-      { class: 'flex gap-4' },
-      el('a', { class: 'nav-link', href: '#' }, 'Nýskrá'),
-      el('a', { class: 'nav-link', href: '#' }, 'Innskrá'),
-      el('a', { class: 'nav-link', href: '#' }, 'Karfa')
-    ),
-    el(
-      'div',
-      { class: 'flex gap-4' },
-      el('a', { class: 'nav-link', href: '#' }, 'Nýjar Vörur'),
-      el('a', { class: 'nav-link', href: '#' }, 'Flokkar')
+      'nav',
+      { class: 'nav' },
+      el(
+        'a',
+        { class: 'titill' /* 'h1 self-center text-2xl' */, href: '/' },
+        'Vefforritunarbúðin'
+      ),
+      el(
+        'div',
+        { class: 'hlekkir' },
+        el(
+          'div',
+          { class: 'hlekkir1' /* flex gap-4' */ },
+          el('a', { class: 'hlekkir1 ul', href: '#' }, 'Nýskrá'),
+          el('a', { class: 'hlekkir1 ul', href: '#' }, 'Innskrá'),
+          el('a', { class: 'hlekkir1 ul', href: '#' }, 'Karfa')
+        ),
+        el(
+          'div',
+          { class: 'hlekkir2' /* 'flex gap-4' */ },
+          el('a', { class: 'hlekkir2 ul', href: '#' }, 'Nýjar Vörur'),
+          el('a', { class: 'hlekkir2 ul', href: '#' }, 'Flokkar')
+        )
+      )
     )
   );
-  navEl.appendChild(navDiv);
+  /* const navDiv = el('div', {
+    class: 'nav'  'nav-div flex gap-4 flex-wrap' ,
+  }); */
+  // navEl.appendChild(navDiv);
   parentElement.appendChild(navEl);
 }
 
