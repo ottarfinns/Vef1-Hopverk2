@@ -15,11 +15,19 @@
 
 .prod-card {
   grid-column: span 4;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 10px;
+
+  img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
 }
 
 .prod-info-container {
   display: flex;
   justify-content: space-between;
+  padding: 1rem;
 }
 
 .prod-price {
