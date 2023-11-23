@@ -1,0 +1,363 @@
+@charset "UTF-8";
+/* Reset og border-box á allt */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* Almennt */
+html,
+input,
+select,
+button {
+  font-size: var(--font-base-body-px);
+  font-family: var(--font-family-base);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-family-heading);
+}
+
+a {
+  color: inherit;
+  background-color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+:root {
+  /*litir sem eru notaðir*/
+  --color-footer: #3c2a1e;
+  --light-brown: #6f4e37;
+  --white: #ffffff;
+  /* Grunn bilið okkar er 1rem == 16px */
+  --font-base-body-px: 16px;
+  --spacing: 1rem;
+  /* Bil á milli „stærri“ eininga (header, efnisbox, footer) */
+  --vertical-space: calc(var(--gutter));
+  /* Hámarksbreidd á efni */
+  --max-width: 1400px;
+  --width-offset: calc(100% - (2 * var(--offset)));
+  /* Border breiddir */
+  --border-small: 1px;
+  --border-large: 8px;
+  --border-radius: 6px;
+  /* Bil á milli „stærri“ eininga (header, efnisbox, footer) */
+  --vertical-space: calc(var(--gutter));
+  /* Hámarksbreidd á efni */
+  --max-width: 1400px;
+  --width-offset: calc(100% - (2 * var(--offset)));
+  /* Border breiddir */
+  --border-small: 1px;
+  --border-large: 8px;
+  --border-radius: 6px;
+  /* Litir */
+  /* Grid stillingar */
+  --columns: 12;
+  --gutter: 30px;
+  --offset: 20px;
+  /* Letur stillingar */
+  --font-base-size: 1rem;
+  --font-family-base: "Lato";
+  --font-family-heading: "Lato";
+}
+
+.wrapper {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 100%;
+  justify-items: center;
+  gap: var(--vertical-space);
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing);
+  padding-top: var(--spacing);
+  width: 100%;
+  background-color: black;
+  /*position: relative;
+  width: var(--width-offset);
+  display: flex;
+  width: 100%;
+
+  background-color: black;
+  align-items: center;*/
+}
+
+.nav {
+  max-width: var(--max-width);
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  grid-template-rows: auto;
+  padding-top: var(--vertical-space);
+  padding-bottom: var(--vertical-space);
+  gap: var(--gutter);
+  align-items: center;
+  justify-items: center;
+  /*background-color: black;
+  position: relative;
+  max-width: var(--max-width);
+  width: var(--width-offset);
+  display: grid;
+  justify-content: space-between;
+
+  grid-template-columns: repeat(var(--columns), 1fr);
+  grid-template-rows: auto;
+
+  padding-top: var(--vertical-space);
+
+  gap: var(--gutter);
+
+  align-items: center;
+
+  justify-items: center;*/
+  /*.search {
+    display: none;
+  }*/
+}
+.nav a {
+  text-decoration: none;
+}
+
+.titill {
+  color: var(--white);
+  font-size: 50px;
+  grid-column: span 12;
+  display: flex;
+  justify-self: start;
+  align-items: center;
+}
+
+@media (min-width: 700px) {
+  .titill {
+    grid-column: span 3;
+  }
+}
+@media (min-width: 1000px) {
+  .titill {
+    grid-column: span 4;
+  }
+}
+.titill {
+  color: var(--white);
+  font-size: 50px;
+}
+
+.hlekkir {
+  color: var(--white);
+  grid-column: 11/12;
+  display: flex;
+  flex-direction: column;
+}
+
+.hlekkir1 {
+  padding: 1rem;
+}
+
+.hlekkir2 {
+  padding: 1rem;
+}
+
+/*.nav-h2 {
+  grid-column: span 10;
+  display: flex;
+  justify-self: start;
+  align-items: center;
+
+  .tannhjol {
+    display: flex;
+    width: 20px;
+    align-items: center;
+  }
+}*/
+/*.hamburger span,
+.hamburger span::before,
+.hamburger span::after {
+  display: block;
+  background: black;
+  height: 4px;
+  width: 1.75rem;
+  border-radius: 999px;
+  position: relative;
+}
+
+.hamburger span::before,
+.hamburger span::after {
+  content: '';
+  position: absolute;
+}
+
+.hamburger span::before {
+  bottom: 7px;
+}
+
+.hamburger span::after {
+  top: 7px;
+}
+
+@media (min-width: 700px) {
+  .nav-h2 {
+    grid-column: span 3;
+
+    .tannhjol {
+      width: 30px;
+    }
+  }
+  .nav {
+    h2 {
+      font-size: 2rem;
+    }
+
+    .search {
+      display: block;
+      grid-column: 5 / 9;
+      width: 100%;
+    }
+
+    .toplink {
+      grid-column: 11 / 12;
+    }
+  }
+}
+
+@media (min-width: 1000px) {
+  .hamburger {
+    display: none;
+  }
+
+  .nav-h2 {
+    grid-column: span 4;
+  }
+
+  .nav {
+    h2 {
+      font-size: 2.5rem;
+    }
+
+    .toplink1 {
+      display: block;
+      overflow: auto;
+    }
+
+    .toplink {
+      grid-column: 12 / 13;
+    }
+  }
+}*/
+/** Hjálpar class sem felur sjónrænt en skjálesarar lesa **/
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.button {
+  background-color: black;
+  color: var(--white);
+  width: 128px;
+  height: 32px;
+  display: inline-block;
+  border: 1px solid var(--color-dark);
+  border-radius: var(--border-radius);
+  padding: calc(var(--spacing) / 2) calc(var(--spacing));
+  font-family: var(--font-family-base);
+  text-decoration: none;
+  text-align: center;
+}
+
+.form-container {
+  max-width: var(--max-width);
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  grid-template-rows: auto;
+  gap: var(--gutter);
+  align-items: center;
+  justify-items: center;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  margin-right: 1rem;
+}
+
+.noresults {
+  grid-column: span 2;
+}
+
+.main {
+  width: var(--width-offset);
+  max-width: var(--max-width);
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: var(--spacing);
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.product-list {
+  grid-column: span 12;
+  display: grid;
+  list-style: none;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: var(--spacing);
+}
+
+.prod-card {
+  grid-column: span 4;
+}
+
+.prod-info-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.prod-price {
+  align-self: center;
+}
+
+.single-product {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: var(--spacing);
+}
+.single-product img {
+  grid-column: span 6;
+}
+
+.SPInfo {
+  grid-column: span 6;
+}
+
+/*# sourceMappingURL=styles.css.map */

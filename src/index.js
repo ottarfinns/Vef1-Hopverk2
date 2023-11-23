@@ -1,4 +1,4 @@
-import { el } from './lib/element.js';
+import { el, empty } from './lib/element.js';
 import {
   renderProductPage,
   renderFrontPage,
@@ -22,12 +22,32 @@ function route() {
 
   const limit = sParams.get('limit');
 
+  const query = sParams.get('query');
+
   if (id) {
     renderProductPage(wrapperEl, id);
   } else if (limit) {
-    renderProductsList(wrapperEl, limit);
+    renderProductsList(wrapperEl, limit, query);
   } else {
-    renderFrontPage(wrapperEl);
+    renderFrontPage(wrapperEl, query);
   }
 }
+
+window.onpopstate = () => {
+  const mainEl = document.querySelector('main');
+  const form = document.querySelector('.form-container');
+  /* const sParams = new URLSearchParams(window.location.search);
+  const query = sParams.get('query'); */
+
+  if (form) {
+    form.remove();
+  }
+
+  if (mainEl) {
+    mainEl.remove();
+  }
+
+  route();
+};
+
 route();
