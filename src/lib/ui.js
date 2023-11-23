@@ -85,7 +85,7 @@ export async function renderProductPage(parentElement, id) {
       el('h3', { class: '' }, `${product.title}`),
       el(
         'div',
-        {},
+        { class: 'SPInfo-price' },
         el('p', {}, `Flokkur: ${product.category_title}`),
         el('p', {}, `Verð: ${product.price}`)
       ),
@@ -98,6 +98,9 @@ export async function renderProductPage(parentElement, id) {
   const catLink = `/products?limit=3&category=${product.category_id}`;
   const catContainer = await nyjarVorur(catLink);
 
+  const svipadarProd = el('h3', { class: 'svipadar-prod' }, 'Svipaðar vörur');
+
+  main.appendChild(svipadarProd);
   main.appendChild(catContainer);
   parentElement.appendChild(main);
 }

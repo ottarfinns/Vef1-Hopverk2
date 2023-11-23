@@ -80,6 +80,7 @@ img {
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: 100%;
+  padding-bottom: var(--spacing);
   justify-items: center;
   gap: var(--vertical-space);
 }
@@ -181,9 +182,10 @@ img {
   width: var(--width-offset);
   max-width: var(--max-width);
   display: grid;
-  grid-template-columns: repeat(var(--columns), 1fr);
-  grid-template-rows: auto;
-  gap: var(--gutter);
+  grid-template-columns: repeat(1, 1fr);
+  /* grid-template-columns: repeat(var(--columns), 1fr);
+  grid-template-rows: auto; */
+  /* gap: var(--gutter); */
   align-items: center;
   justify-items: center;
 }
@@ -194,15 +196,14 @@ form {
   justify-content: start;
   gap: 0.5rem;
   width: 100%;
-  grid-column: span 4;
+  grid-column: span 8;
 }
 form .button {
   max-width: 4rem;
 }
 
 .input {
-  max-width: 300px;
-  width: 100%;
+  width: 300px;
   border-radius: 6px;
   border: none;
   border: solid 1px #000;
@@ -234,7 +235,7 @@ form .button {
 }
 
 .prod-card {
-  grid-column: span 4;
+  grid-column: span 12;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 10px;
 }
@@ -263,6 +264,16 @@ form .button {
   align-self: center;
 }
 
+@media (min-width: 600px) {
+  .prod-card {
+    grid-column: span 6;
+  }
+}
+@media (min-width: 1000px) {
+  .prod-card {
+    grid-column: span 4;
+  }
+}
 .single-product {
   grid-column: span 12;
   display: grid;
@@ -270,13 +281,38 @@ form .button {
   gap: var(--spacing);
 }
 .single-product img {
-  grid-column: span 6;
+  grid-column: span 12;
 }
 
 .SPInfo {
-  grid-column: span 6;
+  grid-column: span 12;
 }
 
+.SPInfo-price {
+  padding-top: var(--spacing);
+  padding-bottom: var(--spacing);
+}
+
+.svipadar-prod {
+  grid-column: span 12;
+}
+
+@media (min-width: 800px) {
+  .single-product img {
+    grid-column: span 12;
+  }
+  .SPInfo {
+    grid-column: span 12;
+  }
+}
+@media (min-width: 1000px) {
+  .single-product img {
+    grid-column: span 6;
+  }
+  .SPInfo {
+    grid-column: span 6;
+  }
+}
 .prod-img {
   min-height: 300px;
   max-height: 300px;

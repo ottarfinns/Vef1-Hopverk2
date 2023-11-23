@@ -3,18 +3,21 @@
   max-width: var(--max-width);
   display: grid;
 
-  grid-template-columns: repeat(var(--columns), 1fr);
-  grid-template-rows: auto;
+  grid-template-columns: repeat(1, 1fr);
+
+  /* grid-template-columns: repeat(var(--columns), 1fr);
+  grid-template-rows: auto; */
 
   //padding-top: var(--vertical-space);
   //padding-bottom: var(--vertical-space);
 
-  gap: var(--gutter);
+  /* gap: var(--gutter); */
 
   align-items: center;
 
   justify-items: center;
 }
+
 form {
   display: flex;
   align-items: center;
@@ -23,7 +26,7 @@ form {
 
   width: 100%;
 
-  grid-column: span 4;
+  grid-column: span 8;
 
   .button {
     max-width: 4rem;
@@ -31,8 +34,7 @@ form {
 }
 
 .input {
-  max-width: 300px;
-  width: 100%;
+  width: 300px;
 
   border-radius: 6px;
   border: none;

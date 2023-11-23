@@ -14,7 +14,7 @@
 }
 
 .prod-card {
-  grid-column: span 4;
+  grid-column: span 12;
 
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 10px;
@@ -46,4 +46,16 @@
   font-size: 1.25rem;
 
   align-self: center;
+}
+
+@media (min-width: 600px) {
+  .prod-card {
+    grid-column: span 6;
+  }
+}
+
+@media (min-width: 1000px) {
+  .prod-card {
+    grid-column: span 4;
+  }
 }
