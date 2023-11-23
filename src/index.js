@@ -1,4 +1,4 @@
-import { el, empty } from './lib/element.js';
+import { el } from './lib/element.js';
 import {
   renderProductPage,
   renderFrontPage,

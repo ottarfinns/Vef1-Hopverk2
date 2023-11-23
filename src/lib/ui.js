@@ -106,8 +106,6 @@ export async function renderProductPage(parentElement, id) {
 }
 
 async function searchAndRender(parentElement, searchForm, query) {
-  console.log(parentElement);
-  console.log(searchForm);
   const main = document.querySelector('main');
   /* const prodListElement = document.querySelector('.product-list');
 
@@ -204,7 +202,7 @@ export function navBar(parentElement) {
         el(
           'div',
           { class: 'hlekkir2' /* 'flex gap-4' */ },
-          el('a', { class: 'nyjar-link', href: '#' }, 'Nýjar Vörur'),
+          el('a', { class: 'nyjar-link', href: '/' }, 'Nýjar Vörur'),
           el('a', { class: '', href: '#' }, 'Flokkar')
         )
       )
