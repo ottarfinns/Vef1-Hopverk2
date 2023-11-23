@@ -309,8 +309,42 @@ form {
   margin-right: 1rem;
 }
 
+.main {
+  width: var(--width-offset);
+  max-width: var(--max-width);
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: var(--spacing);
+}
+
 .font-bold {
   font-weight: bold;
+}
+
+.product-list {
+  grid-column: span 12;
+  display: grid;
+  list-style: none;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: var(--spacing);
+}
+
+.prod-card {
+  grid-column: span 4;
+}
+
+.single-product {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: var(--spacing);
+}
+.single-product img {
+  grid-column: span 6;
+}
+
+.SPInfo {
+  grid-column: span 6;
 }
 
 /*# sourceMappingURL=styles.css.map */

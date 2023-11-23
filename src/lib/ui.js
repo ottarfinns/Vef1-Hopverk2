@@ -18,7 +18,7 @@ async function nyjarVorur(link) {
 
   for (const prod of products) {
     const productElement = el(
-      'div',
+      'li',
       { class: 'prod-card col-span-4' },
       el(
         'a',
@@ -75,7 +75,7 @@ export async function renderProductPage(parentElement, id) {
 
   const singleProductElement = el(
     'div',
-    { class: '' },
+    { class: 'single-product' },
     el('img', { src: `${product.image}` }),
     el(
       'div',

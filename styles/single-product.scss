@@ -1,18 +1,17 @@
-.font-bold {
-  font-weight: bold;
-}
-
-.product-list {
+.single-product {
   grid-column: span 12;
 
   display: grid;
 
-  list-style: none;
-
   grid-template-columns: repeat(var(--columns), 1fr);
+
   gap: var(--spacing);
+
+  img {
+    grid-column: span 6;
+  }
 }
 
-.prod-card {
-  grid-column: span 4;
+.SPInfo {
+  grid-column: span 6;
 }
