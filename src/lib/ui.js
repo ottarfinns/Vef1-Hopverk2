@@ -14,12 +14,12 @@ async function nyjarVorur(link) {
     return noResultsEl;
   }
 
-  const list = el('ul', { class: 'product-list grid grid-cols-12 gap-4' });
+  const list = el('ul', { class: 'product-list' });
 
   for (const prod of products) {
     const productElement = el(
       'li',
-      { class: 'prod-card col-span-4' },
+      { class: 'prod-card' },
       el(
         'a',
         { href: `/?id=${prod.id}` },
@@ -32,7 +32,7 @@ async function nyjarVorur(link) {
           'div',
           {},
           el('p', { class: 'prod-title font-bold' }, `${prod.title}`),
-          el('p', { class: 'prod-category' }, `${prod.category_title}`)
+          el('p', {}, `${prod.category_title}`)
         ),
 
         el('p', { class: 'prod-price font-bold' }, `${prod.price} kr.-`)
@@ -62,7 +62,7 @@ function renderSearchForm(searchHandler, query = undefined) {
       class: 'input',
       placeholder: 'Leita að vörum',
     }),
-    el('button', { class: 'button' /* 'btn btn-neutral' */ }, 'Leita')
+    el('button', { class: 'button' }, 'Leita')
   );
 
   form.addEventListener('submit', searchHandler);
@@ -107,11 +107,6 @@ export async function renderProductPage(parentElement, id) {
 
 async function searchAndRender(parentElement, searchForm, query) {
   const main = document.querySelector('main');
-  /* const prodListElement = document.querySelector('.product-list');
-
-  if (prodListElement) {
-    prodListElement.remove();
-  } */
 
   if (!main) {
     console.warn('fann ekki <main> element');
@@ -158,11 +153,6 @@ export async function renderProductsList(parentElement, limit, query) {
   const productList = await nyjarVorur(`products?limit=${limit}`);
   const button = pageButton('Forsíða', '/');
 
-  /* const selectedLink = document.querySelector('.allar-link');
-  if (selectedLink) {
-    selectedLink.classList.add('font-bold');
-  } */
-
   const form = renderSearchForm(onSearch, query);
   const formContainer = el('div', { class: 'form-container' });
   formContainer.appendChild(form);
@@ -180,7 +170,7 @@ export async function renderProductsList(parentElement, limit, query) {
 export function navBar(parentElement) {
   const navEl = el(
     'div',
-    { class: 'top' /* flex justify-between w-full' */ },
+    { class: 'top' },
     el(
       'nav',
       { class: 'nav' },
@@ -194,64 +184,27 @@ export function navBar(parentElement) {
         { class: 'hlekkir' },
         el(
           'div',
-          { class: 'hlekkir1' /* flex gap-4' */ },
-          el('a', { class: 'hlekkir1 ul', href: '#' }, 'Nýskrá'),
-          el('a', { class: 'hlekkir1 ul', href: '#' }, 'Innskrá'),
-          el('a', { class: 'hlekkir1 ul', href: '#' }, 'Karfa')
+          { class: 'hlekkir1' },
+          el('a', { href: '#' }, 'Nýskrá'),
+          el('a', { href: '#' }, 'Innskrá'),
+          el('a', { href: '#' }, 'Karfa')
         ),
         el(
           'div',
-          { class: 'hlekkir2' /* 'flex gap-4' */ },
-          el('a', { class: 'nyjar-link', href: '/' }, 'Nýjar Vörur'),
-          el('a', { class: '', href: '#' }, 'Flokkar')
+          { class: 'hlekkir2' },
+          el('a', { href: '#' }, 'Nýjar Vörur'),
+          el('a', { href: '#' }, 'Flokkar')
         )
       )
     )
   );
-  /* const navDiv = el('div', {
-    class: 'nav'  'nav-div flex gap-4 flex-wrap' ,
-  }); */
-  // navEl.appendChild(navDiv);
   parentElement.appendChild(navEl);
 }
-
-/* async function categoriesFront() {
-  const res = await fetchFromLink('/categories?limit=12');
-  const categories = res.items;
-
-  const categoryContainer = el(
-    'div',
-    { class: 'cat-container' },
-    el(
-      'h2',
-      { class: 'cat-cont-header text-xl font-bold' },
-      'Skoðaðu vöruflokkana okkar'
-    )
-  );
-
-  const list = el('ul', { class: 'category-list grid gap-4 grid-cols-12' });
-
-  for (const cat of categories) {
-    const catElement = el(
-      'div',
-      {
-        class:
-          'category border-solid border-black border-2 col-span-4 text-center text-5xl',
-      },
-      `${cat.title}`
-    );
-    list.appendChild(catElement);
-  }
-
-  categoryContainer.appendChild(list);
-  return categoryContainer;
-} */
 
 export async function renderFrontPage(parentElement, query) {
   const mainEl = el('main', { class: 'main' });
   const homePageProducts = await nyjarVorur('products?limit=6');
   const productsListButton = pageButton('Vörulisti', '?limit=100');
-  /* const categoryContainer = await categoriesFront(); */
 
   const form = renderSearchForm(onSearch, query);
   const formContainer = el('div', { class: 'form-container' });
@@ -265,7 +218,6 @@ export async function renderFrontPage(parentElement, query) {
 
   mainEl.appendChild(homePageProducts);
   mainEl.appendChild(productsListButton);
-  /* mainEl.appendChild(categoryContainer); */
   parentElement.appendChild(mainEl);
 
   if (query) {
