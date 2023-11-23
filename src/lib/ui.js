@@ -29,11 +29,13 @@ async function nyjarVorur(link) {
         'div',
         { class: 'prod-info-container' },
         el(
-          'span',
-          { class: 'prod-title' },
-          `${prod.title} ${prod.category_title}`
+          'div',
+          {},
+          el('p', { class: 'prod-title font-bold' }, `${prod.title}`),
+          el('p', { class: 'prod-category' }, `${prod.category_title}`)
         ),
-        el('span', { class: 'prod-price' }, `${prod.price} kr.-`)
+
+        el('p', { class: 'prod-price font-bold' }, `${prod.price} kr.-`)
       )
     );
     list.appendChild(productElement);

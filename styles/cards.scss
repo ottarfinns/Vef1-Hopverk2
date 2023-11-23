@@ -16,3 +16,12 @@
 .prod-card {
   grid-column: span 4;
 }
+
+.prod-info-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.prod-price {
+  align-self: center;
+}
