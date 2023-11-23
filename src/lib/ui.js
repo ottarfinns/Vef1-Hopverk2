@@ -184,9 +184,9 @@ export function navBar(parentElement) {
       'nav',
       { class: 'nav' },
       el(
-        'a',
-        { class: 'titill' /* 'h1 self-center text-2xl' */, href: '/' },
-        'Vefforritunarbúðin'
+        'div',
+        { class: 'titill' },
+        el('a', { href: '/' }, 'Vefforritunarbúðin')
       ),
       el(
         'div',
@@ -201,12 +201,8 @@ export function navBar(parentElement) {
         el(
           'div',
           { class: 'hlekkir2' /* 'flex gap-4' */ },
-          el(
-            'a',
-            { class: 'hlekkir2 ul nyjar-link', href: '#' },
-            'Nýjar Vörur'
-          ),
-          el('a', { class: 'hlekkir2 ul', href: '#' }, 'Flokkar')
+          el('a', { class: 'nyjar-link', href: '#' }, 'Nýjar Vörur'),
+          el('a', { class: '', href: '#' }, 'Flokkar')
         )
       )
     )

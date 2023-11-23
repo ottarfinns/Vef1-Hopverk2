@@ -92,13 +92,6 @@ img {
   padding-top: var(--spacing);
   width: 100%;
   background-color: black;
-  /*position: relative;
-  width: var(--width-offset);
-  display: flex;
-  width: 100%;
-
-  background-color: black;
-  align-items: center;*/
 }
 
 .nav {
@@ -111,40 +104,19 @@ img {
   gap: var(--gutter);
   align-items: center;
   justify-items: center;
-  /*background-color: black;
-  position: relative;
-  max-width: var(--max-width);
-  width: var(--width-offset);
-  display: grid;
-  justify-content: space-between;
-
-  grid-template-columns: repeat(var(--columns), 1fr);
-  grid-template-rows: auto;
-
-  padding-top: var(--vertical-space);
-
-  gap: var(--gutter);
-
-  align-items: center;
-
-  justify-items: center;*/
-  /*.search {
-    display: none;
-  }*/
 }
 .nav a {
   text-decoration: none;
 }
 
-.titill {
+/* .titill {
   color: var(--white);
   font-size: 50px;
   grid-column: span 12;
   display: flex;
   justify-self: start;
   align-items: center;
-}
-
+} */
 @media (min-width: 700px) {
   .titill {
     grid-column: span 3;
@@ -158,13 +130,16 @@ img {
 .titill {
   color: var(--white);
   font-size: 50px;
+  grid-column: span 7;
+  justify-self: start;
 }
 
 .hlekkir {
   color: var(--white);
-  grid-column: 11/12;
+  grid-column: 12/13;
   display: flex;
   flex-direction: column;
+  justify-items: center;
 }
 
 .hlekkir1 {
@@ -173,94 +148,10 @@ img {
 
 .hlekkir2 {
   padding: 1rem;
-}
-
-/*.nav-h2 {
-  grid-column: span 10;
   display: flex;
-  justify-self: start;
-  align-items: center;
-
-  .tannhjol {
-    display: flex;
-    width: 20px;
-    align-items: center;
-  }
-}*/
-/*.hamburger span,
-.hamburger span::before,
-.hamburger span::after {
-  display: block;
-  background: black;
-  height: 4px;
-  width: 1.75rem;
-  border-radius: 999px;
-  position: relative;
+  justify-content: space-around;
 }
 
-.hamburger span::before,
-.hamburger span::after {
-  content: '';
-  position: absolute;
-}
-
-.hamburger span::before {
-  bottom: 7px;
-}
-
-.hamburger span::after {
-  top: 7px;
-}
-
-@media (min-width: 700px) {
-  .nav-h2 {
-    grid-column: span 3;
-
-    .tannhjol {
-      width: 30px;
-    }
-  }
-  .nav {
-    h2 {
-      font-size: 2rem;
-    }
-
-    .search {
-      display: block;
-      grid-column: 5 / 9;
-      width: 100%;
-    }
-
-    .toplink {
-      grid-column: 11 / 12;
-    }
-  }
-}
-
-@media (min-width: 1000px) {
-  .hamburger {
-    display: none;
-  }
-
-  .nav-h2 {
-    grid-column: span 4;
-  }
-
-  .nav {
-    h2 {
-      font-size: 2.5rem;
-    }
-
-    .toplink1 {
-      display: block;
-      overflow: auto;
-    }
-
-    .toplink {
-      grid-column: 12 / 13;
-    }
-  }
-}*/
 /** Hjálpar class sem felur sjónrænt en skjálesarar lesa **/
 .sr-only:not(:focus):not(:active) {
   clip: rect(0 0 0 0);
@@ -287,6 +178,7 @@ img {
 }
 
 .form-container {
+  width: var(--width-offset);
   max-width: var(--max-width);
   display: grid;
   grid-template-columns: repeat(var(--columns), 1fr);
@@ -299,14 +191,22 @@ img {
 form {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: start;
+  gap: 0.5rem;
+  width: 100%;
+  grid-column: span 4;
+}
+form .button {
+  max-width: 4rem;
 }
 
 .input {
-  display: flex;
-  align-items: center;
-  height: 32px;
-  margin-right: 1rem;
+  max-width: 300px;
+  width: 100%;
+  border-radius: 6px;
+  border: none;
+  border: solid 1px #000;
+  padding: 0.25rem;
 }
 
 .noresults {
@@ -335,14 +235,31 @@ form {
 
 .prod-card {
   grid-column: span 4;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 10px;
+}
+.prod-card img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .prod-info-container {
   display: flex;
   justify-content: space-between;
+  padding: 1rem;
+}
+.prod-info-container div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.prod-title {
+  font-size: 1.5rem;
 }
 
 .prod-price {
+  font-size: 1.25rem;
   align-self: center;
 }
 
