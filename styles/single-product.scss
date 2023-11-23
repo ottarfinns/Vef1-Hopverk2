@@ -8,10 +8,43 @@
   gap: var(--spacing);
 
   img {
-    grid-column: span 6;
+    grid-column: span 12;
   }
 }
 
 .SPInfo {
-  grid-column: span 6;
+  grid-column: span 12;
+}
+
+.SPInfo-price {
+  padding-top: var(--spacing);
+  padding-bottom: var(--spacing);
+}
+
+.svipadar-prod {
+  grid-column: span 12;
+}
+
+@media (min-width: 800px) {
+  .single-product {
+    img {
+      grid-column: span 12;
+    }
+  }
+
+  .SPInfo {
+    grid-column: span 12;
+  }
+}
+
+@media (min-width: 1000px) {
+  .single-product {
+    img {
+      grid-column: span 6;
+    }
+  }
+
+  .SPInfo {
+    grid-column: span 6;
+  }
 }

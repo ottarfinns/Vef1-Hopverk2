@@ -14,14 +14,48 @@
 }
 
 .prod-card {
-  grid-column: span 4;
+  grid-column: span 12;
+
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 10px;
+
+  img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
 }
 
 .prod-info-container {
   display: flex;
   justify-content: space-between;
+
+  padding: 1rem;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
+
+.prod-title {
+  font-size: 1.5rem;
 }
 
 .prod-price {
+  font-size: 1.25rem;
+
   align-self: center;
+}
+
+@media (min-width: 600px) {
+  .prod-card {
+    grid-column: span 6;
+  }
+}
+
+@media (min-width: 1000px) {
+  .prod-card {
+    grid-column: span 4;
+  }
 }

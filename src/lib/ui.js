@@ -85,7 +85,7 @@ export async function renderProductPage(parentElement, id) {
       el('h3', { class: '' }, `${product.title}`),
       el(
         'div',
-        {},
+        { class: 'SPInfo-price' },
         el('p', {}, `Flokkur: ${product.category_title}`),
         el('p', {}, `Verð: ${product.price}`)
       ),
@@ -98,13 +98,14 @@ export async function renderProductPage(parentElement, id) {
   const catLink = `/products?limit=3&category=${product.category_id}`;
   const catContainer = await nyjarVorur(catLink);
 
+  const svipadarProd = el('h3', { class: 'svipadar-prod' }, 'Svipaðar vörur');
+
+  main.appendChild(svipadarProd);
   main.appendChild(catContainer);
   parentElement.appendChild(main);
 }
 
 async function searchAndRender(parentElement, searchForm, query) {
-  console.log(parentElement);
-  console.log(searchForm);
   const main = document.querySelector('main');
   /* const prodListElement = document.querySelector('.product-list');
 
@@ -184,9 +185,9 @@ export function navBar(parentElement) {
       'nav',
       { class: 'nav' },
       el(
-        'a',
-        { class: 'titill' /* 'h1 self-center text-2xl' */, href: '/' },
-        'Vefforritunarbúðin'
+        'div',
+        { class: 'titill' },
+        el('a', { href: '/' }, 'Vefforritunarbúðin')
       ),
       el(
         'div',
@@ -201,12 +202,8 @@ export function navBar(parentElement) {
         el(
           'div',
           { class: 'hlekkir2' /* 'flex gap-4' */ },
-          el(
-            'a',
-            { class: 'hlekkir2 ul nyjar-link', href: '#' },
-            'Nýjar Vörur'
-          ),
-          el('a', { class: 'hlekkir2 ul', href: '#' }, 'Flokkar')
+          el('a', { class: 'nyjar-link', href: '/' }, 'Nýjar Vörur'),
+          el('a', { class: '', href: '#' }, 'Flokkar')
         )
       )
     )
