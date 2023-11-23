@@ -23,7 +23,11 @@ async function nyjarVorur(link) {
       el(
         'a',
         { href: `/?id=${prod.id}` },
-        el('img', { class: 'prod-img', src: `${prod.image}` })
+        el('img', {
+          class: 'prod-img',
+          alt: `Mynd af ${prod.title}`,
+          src: `${prod.image}`,
+        })
       ),
       el(
         'div',
@@ -78,11 +82,11 @@ export async function renderProductPage(parentElement, id) {
   const singleProductElement = el(
     'div',
     { class: 'single-product' },
-    el('img', { src: `${product.image}` }),
+    el('img', { alt: `Mynd af ${product.title}`, src: `${product.image}` }),
     el(
       'div',
       { class: 'sp-info' },
-      el('h3', { class: '' }, `${product.title}`),
+      el('h3', { class: 'sp-title' }, `${product.title}`),
       el(
         'div',
         { class: 'sp-info-price' },
@@ -192,7 +196,7 @@ export function navBar(parentElement) {
         el(
           'div',
           { class: 'hlekkir2' },
-          el('a', { href: '#' }, 'Nýjar Vörur'),
+          el('a', { class: 'nyjar-link', href: '/' }, 'Nýjar Vörur'),
           el('a', { href: '#' }, 'Flokkar')
         )
       )

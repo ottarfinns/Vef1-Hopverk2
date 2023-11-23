@@ -204,7 +204,9 @@ form .button {
 
 .prod-card {
   grid-column: span 12;
+  /* stylelint-disable length-zero-no-unit, alpha-value-notation */
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* stylelint-enable length-zero-no-unit, alpha-value-notation */
   border-radius: 10px;
 }
 .prod-card img {
@@ -254,6 +256,10 @@ form .button {
 
 .sp-info {
   grid-column: span 12;
+}
+
+.sp-title {
+  font-size: 2rem;
 }
 
 .sp-info-price {
