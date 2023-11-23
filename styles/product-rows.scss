@@ -1,0 +1,11 @@
+.prod-img {
+  // object-cover
+  min-height: 300px;
+  max-height: 300px;
+  //object-fit: cover;
+  //object-position: top center;
+  width: 100%;
+  //width: auto; /* Maintain aspect ratio */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover;
+}

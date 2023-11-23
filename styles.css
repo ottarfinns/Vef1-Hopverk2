@@ -360,4 +360,12 @@ form {
   grid-column: span 6;
 }
 
+.prod-img {
+  min-height: 300px;
+  max-height: 300px;
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover;
+}
+
 /*# sourceMappingURL=styles.css.map */

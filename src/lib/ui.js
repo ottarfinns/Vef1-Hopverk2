@@ -23,7 +23,7 @@ async function nyjarVorur(link) {
       el(
         'a',
         { href: `/?id=${prod.id}` },
-        el('img', { class: 'prod-img object-cover', src: `${prod.image}` })
+        el('img', { class: 'prod-img', src: `${prod.image}` })
       ),
       el(
         'div',
