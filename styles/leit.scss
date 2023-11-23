@@ -2,12 +2,8 @@
   width: var(--width-offset);
   max-width: var(--max-width);
   display: grid;
-
   grid-template-columns: repeat(1, 1fr);
-
-  align-items: center;
-
-  justify-items: center;
+  place-items: center;
 }
 
 form {
@@ -15,9 +11,7 @@ form {
   align-items: center;
   justify-content: start;
   gap: 0.5rem;
-
   width: 100%;
-
   grid-column: span 8;
 
   .button {
@@ -27,7 +21,6 @@ form {
 
 .input {
   width: 300px;
-
   border-radius: 6px;
   border: none;
   border: solid 1px #000;

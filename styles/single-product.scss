@@ -1,10 +1,7 @@
 .single-product {
   grid-column: span 12;
-
   display: grid;
-
   grid-template-columns: repeat(var(--columns), 1fr);
-
   gap: var(--spacing);
 
   img {
@@ -12,11 +9,11 @@
   }
 }
 
-.SPInfo {
+.sp-info {
   grid-column: span 12;
 }
 
-.SPInfo-price {
+.sp-info-price {
   padding-top: var(--spacing);
   padding-bottom: var(--spacing);
 }
@@ -32,7 +29,7 @@
     }
   }
 
-  .SPInfo {
+  .sp-info {
     grid-column: span 12;
   }
 }
@@ -44,7 +41,7 @@
     }
   }
 
-  .SPInfo {
+  .sp-info {
     grid-column: span 6;
   }
 }

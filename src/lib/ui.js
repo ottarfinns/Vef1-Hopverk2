@@ -81,11 +81,11 @@ export async function renderProductPage(parentElement, id) {
     el('img', { src: `${product.image}` }),
     el(
       'div',
-      { class: 'SPInfo' },
+      { class: 'sp-info' },
       el('h3', { class: '' }, `${product.title}`),
       el(
         'div',
-        { class: 'SPInfo-price' },
+        { class: 'sp-info-price' },
         el('p', {}, `Flokkur: ${product.category_title}`),
         el('p', {}, `Verð: ${product.price}`)
       ),
