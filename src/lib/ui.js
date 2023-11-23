@@ -155,6 +155,11 @@ export async function renderProductsList(parentElement, limit, query) {
   const productList = await nyjarVorur(`products?limit=${limit}`);
   const button = pageButton('Forsíða', '/');
 
+  /* const selectedLink = document.querySelector('.allar-link');
+  if (selectedLink) {
+    selectedLink.classList.add('font-bold');
+  } */
+
   const form = renderSearchForm(onSearch, query);
   const formContainer = el('div', { class: 'form-container' });
   formContainer.appendChild(form);
@@ -194,7 +199,11 @@ export function navBar(parentElement) {
         el(
           'div',
           { class: 'hlekkir2' /* 'flex gap-4' */ },
-          el('a', { class: 'hlekkir2 ul', href: '#' }, 'Nýjar Vörur'),
+          el(
+            'a',
+            { class: 'hlekkir2 ul nyjar-link', href: '#' },
+            'Nýjar Vörur'
+          ),
           el('a', { class: 'hlekkir2 ul', href: '#' }, 'Flokkar')
         )
       )
@@ -249,6 +258,11 @@ export async function renderFrontPage(parentElement, query) {
   const formContainer = el('div', { class: 'form-container' });
   formContainer.appendChild(form);
   parentElement.appendChild(formContainer);
+
+  const selectedLink = document.querySelector('.nyjar-link');
+  if (selectedLink) {
+    selectedLink.classList.add('font-bold');
+  }
 
   mainEl.appendChild(homePageProducts);
   mainEl.appendChild(productsListButton);
