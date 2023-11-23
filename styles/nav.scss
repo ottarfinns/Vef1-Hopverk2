@@ -51,37 +51,6 @@
   gap: var(--spacing);
 }
 
-/* .hlekkir {
-  color: var(--white);
-  grid-column: 12/13;
-  display: flex;
-  flex-direction: row;
-  justify-items: center;
-}
-
-.hlekkir1 {
-  padding: 1rem;
-}
-
-.hlekkir2 {
-  padding: 1rem;
-
-  display: flex;
-  justify-content: space-around;
-} */
-
-/* @media (min-width: 600px) {
-  .titill {
-    grid-column: span 6;
-  }
-
-  .hlekkir {
-    grid-column: 10 / 13;
-
-    justify-self: end;
-  }
-} */
-
 @media (min-width: 600px) {
   .titill {
     grid-column: span 6;
