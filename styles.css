@@ -309,4 +309,55 @@ form {
   margin-right: 1rem;
 }
 
+.noresults {
+  grid-column: span 2;
+}
+
+.main {
+  width: var(--width-offset);
+  max-width: var(--max-width);
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: var(--spacing);
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.product-list {
+  grid-column: span 12;
+  display: grid;
+  list-style: none;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: var(--spacing);
+}
+
+.prod-card {
+  grid-column: span 4;
+}
+
+.prod-info-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.prod-price {
+  align-self: center;
+}
+
+.single-product {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: var(--spacing);
+}
+.single-product img {
+  grid-column: span 6;
+}
+
+.SPInfo {
+  grid-column: span 6;
+}
+
 /*# sourceMappingURL=styles.css.map */
