@@ -56,6 +56,54 @@ function pageButton(page, query) {
   return button;
 }
 
+function setLoading(parentElement, searchForm) {
+  let loadingElement = parentElement.querySelector(
+    '.while-searching font-bold'
+  );
+
+  if (!loadingElement) {
+    loadingElement = el(
+      'div',
+      { class: 'while-searching' },
+      'Leita að vöru...'
+    );
+    parentElement.appendChild(loadingElement);
+  }
+
+  if (!searchForm) {
+    return;
+  }
+
+  const button = searchForm.querySelector('button');
+
+  if (button) {
+    button.setAttribute('disabled', 'disabled');
+  }
+}
+
+/**
+ * Fjarlægir „loading state“.
+ * @param {HTMLElement} parentElement Element sem inniheldur skilaboð.
+ * @param {Element | undefined} searchForm Leitarform sem á að gera virkt.
+ */
+function setNotLoading(parentElement, searchForm) {
+  const loadingElement = parentElement.querySelector('.while-searching');
+
+  if (loadingElement) {
+    loadingElement.remove();
+  }
+
+  if (!searchForm) {
+    return;
+  }
+
+  const disabledButton = searchForm.querySelector('button[disabled]');
+
+  if (disabledButton) {
+    disabledButton.removeAttribute('disabled');
+  }
+}
+
 function renderSearchForm(searchHandler, query = undefined) {
   const form = el(
     'form',
@@ -125,16 +173,20 @@ async function searchAndRender(parentElement, searchForm, query) {
 
   const button = pageButton('Forsíða', '/');
 
-  const leitaElement = el(
+  /* const leitaElement = el(
     'div',
     { class: 'while-searching font-bold' },
     'Leita að vöru...'
   );
-  main.appendChild(leitaElement);
+  main.appendChild(leitaElement); */
+
+  setLoading(main, searchForm);
 
   const searchResultsEl = await nyjarVorur(`/products?search=${query}`);
 
-  leitaElement.remove();
+  setNotLoading(main, searchForm);
+
+  /* leitaElement.remove(); */
 
   main.appendChild(searchResultsEl);
   main.appendChild(button);
@@ -164,6 +216,7 @@ export async function renderProductsList(parentElement, limit, query) {
   const main = el('main', { class: 'main' });
 
   const productList = await nyjarVorur(`products?limit=${limit}`);
+
   const button = pageButton('Forsíða', '/');
 
   const form = renderSearchForm(onSearch, query);

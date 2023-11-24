@@ -15,6 +15,7 @@
     "copy:html": "cpy ./*.html ./build/",
     "copy:js": "cpy ./src/*.js ./src/lib/*.js ./build/",
     "copy:css": "cpy ./*styles.css ./build/",
+    "copy:jpg": "cpy ./images ./build",
     "build": "concurrently npm:copy:*"
   },
   "keywords": [],
@@ -31,6 +32,7 @@
     "eslint-plugin-import": "^2.29.0",
     "prettier": "^3.1.0",
     "stylelint": "^15.11.0",
+    "stylelint-config-sass-guidelines": "^10.0.0",
     "stylelint-config-standard": "^34.0.0"
   },
   "dependencies": {
