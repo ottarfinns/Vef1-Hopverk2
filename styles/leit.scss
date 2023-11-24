@@ -30,3 +30,9 @@ form {
 .noresults {
   grid-column: span 2;
 }
+
+.while-searching {
+  font-size: 1.5rem;
+  grid-column: span 12;
+  justify-self: start;
+}

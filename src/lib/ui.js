@@ -125,7 +125,16 @@ async function searchAndRender(parentElement, searchForm, query) {
 
   const button = pageButton('Forsíða', '/');
 
+  const leitaElement = el(
+    'div',
+    { class: 'while-searching font-bold' },
+    'Leita að vöru...'
+  );
+  main.appendChild(leitaElement);
+
   const searchResultsEl = await nyjarVorur(`/products?search=${query}`);
+
+  leitaElement.remove();
 
   main.appendChild(searchResultsEl);
   main.appendChild(button);

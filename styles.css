@@ -172,6 +172,12 @@ form .button {
   grid-column: span 2;
 }
 
+.while-searching {
+  font-size: 1.5rem;
+  grid-column: span 12;
+  justify-self: start;
+}
+
 .main {
   width: var(--width-offset);
   max-width: var(--max-width);
