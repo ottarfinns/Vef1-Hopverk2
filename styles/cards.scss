@@ -4,11 +4,8 @@
 
 .product-list {
   grid-column: span 12;
-
   display: grid;
-
   list-style: none;
-
   grid-template-columns: repeat(var(--columns), 1fr);
   gap: var(--spacing);
 }
@@ -16,7 +13,10 @@
 .prod-card {
   grid-column: span 12;
 
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* stylelint-disable length-zero-no-unit, alpha-value-notation */
+  box-shadow: rgb(0, 0, 0, 24%) 0px 3px 8px;
+  /* stylelint-enable length-zero-no-unit, alpha-value-notation */
+
   border-radius: 10px;
 
   img {
@@ -28,7 +28,6 @@
 .prod-info-container {
   display: flex;
   justify-content: space-between;
-
   padding: 1rem;
 
   div {
@@ -44,7 +43,6 @@
 
 .prod-price {
   font-size: 1.25rem;
-
   align-self: center;
 }
 
