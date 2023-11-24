@@ -16,7 +16,6 @@
     "copy:js": "cpy ./src/*.js ./src/lib/*.js ./build/",
     "copy:css": "cpy ./*styles.css ./build/",
     "copy:jpg": "cpy ./images ./build",
-    "copy:png": "cpy ./images ./build",
     "build": "concurrently npm:copy:*"
   },
   "keywords": [],
