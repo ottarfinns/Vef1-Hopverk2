@@ -8,5 +8,5 @@ Við bygðum þetta verkefni útfrá fyrri js verkefnum, index.js er í src og i
 
 Við skiptum CSS kóðanum upp í SASS skrár og notuðum lýsandi skráarheiti fyrir scss skrár til að vita nákvæmlega hvar má finna CSS kóða fyrir viðeigandi hluti á síðunni.
 
-Friðrik Þór Ólafsson netfang: `fto2@hi.is` Github: `FridrikThor`  
-Óttar Finnsson netfang: `otf2@hi.is` Github: `ottarfinns`
+Friðrik Þór Ólafsson, Netfang: `fto2@hi.is`, Github: `FridrikThor`  
+Óttar Finnsson, Netfang: `otf2@hi.is`, Github: `ottarfinns`
