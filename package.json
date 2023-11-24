@@ -14,7 +14,7 @@
     "prettier": "prettier --write .",
     "copy:html": "cpy ./*.html ./build/",
     "copy:js": "cpy ./src/*.js ./src/lib/*.js ./build/",
-    "copy:css": "cpy ./dist/*.css ./build/",
+    "copy:css": "cpy ./*styles.css ./build/",
     "build": "concurrently npm:copy:*"
   },
   "keywords": [],
