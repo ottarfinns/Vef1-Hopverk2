@@ -73,7 +73,7 @@ img {
   gap: var(--spacing);
   padding-top: var(--spacing);
   width: 100%;
-  background-color: black;
+  background-color: #000;
 }
 
 .nav {
@@ -127,7 +127,7 @@ img {
   }
 }
 .button {
-  background-color: black;
+  background-color: #000;
   color: var(--white);
   width: 128px;
   height: 32px;
