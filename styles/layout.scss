@@ -2,8 +2,7 @@
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: 100%;
-
+  padding-bottom: var(--spacing);
   justify-items: center;
-
   gap: var(--vertical-space);
 }

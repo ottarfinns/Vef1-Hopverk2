@@ -1,16 +1,12 @@
 .button {
-  //bg-black text-white w-64 h-12
   background-color: black;
   color: var(--white);
   width: 128px;
   height: 32px;
-
   display: inline-block;
-
   border: 1px solid var(--color-dark);
   border-radius: var(--border-radius);
   padding: calc(var(--spacing) / 2) calc(var(--spacing));
-
   font-family: var(--font-family-base);
   text-decoration: none;
   text-align: center;
